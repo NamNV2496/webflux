@@ -1,0 +1,2 @@
+server: 8080
+client: 8081
