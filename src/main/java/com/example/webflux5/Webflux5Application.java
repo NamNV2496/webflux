@@ -1,0 +1,13 @@
+package com.example.webflux5;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Webflux5Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Webflux5Application.class, args);
+    }
+
+}
