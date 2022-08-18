@@ -8,10 +8,10 @@
         <version>2.7.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-<!--    <modules>-->
-<!--        <module>client</module>-->
-<!--        <module>server</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>client</module>
+        <module>server</module>
+    </modules>
     <groupId>com.example</groupId>
     <artifactId>webflux5</artifactId>
     <version>0.0.1-SNAPSHOT</version>
