@@ -14,7 +14,7 @@ public class PetWebSecurityConfig {
             ServerHttpSecurity http) {
         http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.GET, "/pet").hasRole("ADMIN")
+                .pathMatchers(HttpMethod.POST, "/pet").hasRole("ADMIN")
                 .pathMatchers("/**").permitAll()
                 .and()
                 .httpBasic();

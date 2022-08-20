@@ -13,34 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/pet")
 public class PetApiController {
 
     @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/pet/createPet",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-    public ResponseEntity<Pet> createNewPet(@RequestBody Pet pet) {
-        return ResponseEntity.ok(pet);
-    }
-
-    @RequestMapping(
         method = RequestMethod.GET,
-        value = "/pet/{id}",
+        value = "/{id}",
         produces = { "application/json", "application/xml" }
     )
-    public ResponseEntity<Pet> findById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Pet> findById(@PathVariable("id") Integer id) throws InterruptedException {
+        Thread.sleep(10000);
         Pet pet = new Pet(1, "cat");
+        // can push data to Kafka of message queue and code API of client to notify
+        // and client will read data from Kafka of message queue
         return ResponseEntity.ok(pet);
     }
 
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/pet",
+        value = "",
         produces = { "application/json" }
     )
-    public ResponseEntity<List<Pet>> getAllPet() {
+    public ResponseEntity<List<Pet>> getAllPet() throws InterruptedException {
+        Thread.sleep(10000);
         List<Pet> listPet = new ArrayList<>();
         listPet.add(new Pet(1, "cat"));
         listPet.add(new Pet(1, "dog"));
@@ -49,7 +44,7 @@ public class PetApiController {
 
     @RequestMapping(
             method = RequestMethod.POST,
-            value = "/pet/create",
+            value = "/create",
             produces = { "application/json" }
     )
     public void createPet(@RequestBody List<Pet> listPet) {
@@ -58,7 +53,7 @@ public class PetApiController {
 
     @RequestMapping(
             method = RequestMethod.PUT,
-            value = "/pet/update",
+            value = "/update",
             produces = { "application/json" }
     )
     public void updatePet(@RequestBody Pet pet) {
