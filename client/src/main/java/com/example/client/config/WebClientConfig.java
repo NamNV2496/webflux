@@ -15,7 +15,7 @@ public class WebClientConfig {
     public WebClient webClient() {
         return WebClient.builder()
                 .baseUrl("http://localhost:8080/pet")
-                .defaultHeader("requestId", String.valueOf(UUID.randomUUID()))
+                .defaultHeader("requestId", String.valueOf(UUID.randomUUID())) // auto add header for all request to server
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }

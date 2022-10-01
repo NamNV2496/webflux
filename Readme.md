@@ -1,8 +1,8 @@
-webflux 5:
+# webflux 5:
 
-server: 8080
+### server: 8080
 
-client: 8081
+### client: 8081
 
 step 1: build and run 2 applications
 
@@ -17,13 +17,13 @@ step 2: send request by postman
         "id": 1,
         "name": "cat"
     }
-    PUT http://localhost:8081/
-    {
-        "id": 1,
-        "name": "dog"
-    }
+    PUT http://localhost:8081/{id}
 
-I added security in server -> so *_ POST http://localhost:8081/ _* is not available
+I added security in server -> so *_ `POST` http://localhost:8081/ _* is not available
 
+
+auto add header at here
+
+    .defaultHeader("requestId", String.valueOf(UUID.randomUUID()))
 
 ![async picture](Async.png)
