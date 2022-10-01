@@ -6,14 +6,19 @@
 package com.example.server.controller;
 
 import com.example.server.domain.Pet;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/pet")
+@RequiredArgsConstructor
 public class PetApiController {
 
     @RequestMapping(
@@ -22,8 +27,10 @@ public class PetApiController {
         produces = { "application/json", "application/xml" }
     )
     public ResponseEntity<Pet> findById(@PathVariable("id") Integer id) throws InterruptedException {
+
         Thread.sleep(10000);
         Pet pet = new Pet(1, "cat");
+
         // can push data to Kafka of message queue and code API of client to notify
         // and client will read data from Kafka of message queue
         return ResponseEntity.ok(pet);
@@ -34,11 +41,12 @@ public class PetApiController {
         value = "",
         produces = { "application/json" }
     )
-    public ResponseEntity<List<Pet>> getAllPet() throws InterruptedException {
+    public ResponseEntity<List<Pet>> getAllPet( @RequestHeader HttpHeaders headers) throws InterruptedException {
         Thread.sleep(10000);
         List<Pet> listPet = new ArrayList<>();
         listPet.add(new Pet(1, "cat"));
-        listPet.add(new Pet(1, "dog"));
+        listPet.add(new Pet(2, "dog"));
+        System.out.println(headers.get("requestId"));
         return ResponseEntity.ok(listPet);
     }
 
